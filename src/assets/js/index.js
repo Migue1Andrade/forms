@@ -20,26 +20,26 @@ const delButton = document.getElementById('delButton');
 const regexNumber = /^\+?(\d{2}|\d{3})?\s?\(?\d{2}\)?\s?\d{4,5}\-?\d{4}$/;
 const regexFullName = /^[a-zA-Zà-ú ]{1,30}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const regexBornData = /^\d{2}\/\d{2}\/\d{4}$/;
 const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 const regexAvenue = /^[A-Za-zÀ-ú\s\d\.\-\']+$/;
 const cepRegex = /\d{5}-\d{3}/;
 
 delButton.addEventListener('click', function(event) {
 	cleanInputs(); 
-})
+});
 
 enter.addEventListener('keypress', function(event) {
 	let keyCodeEvent = event.keyCode === 13;
 	if (keyCodeEvent) {
 		saveButton.click(); 
-	}
+	};
 }); 
+
 const cleanInputs = () => {
 	const inputs = [fullName, number, email, bornData, cpf, avenue, citty, state, socialName, cep, hood, homeNumber, complementsBox];
 
 	inputs.forEach(input => input.value = '');
-}
+};
 
 const validateInputs = () => {
 	let validForm = true;
@@ -67,7 +67,7 @@ const validateInputs = () => {
 		validForm = false;
 	};
 
-	if (bornData.value.trim() === '' || !regexBornData.test(bornData.value)) {
+	if (bornData.value.trim() === '') {
 		bornData.value = '';
 		bornData.style.borderColor = 'red';
 		validForm = false;
@@ -103,15 +103,14 @@ const validateInputs = () => {
 	};
 
 	return validForm;
-}
+};
 
 const localSave = () => {
 	const validForm = validateInputs();
 
 	if (!validForm) {
 		alert('Preencha os campos obrigatórios!');
-	}
-	else {
+	} else {
 		const inputs = getInputs;
 		const formData = [];
 
@@ -119,45 +118,30 @@ const localSave = () => {
 
 			if (input.value) {
 				formData.push(input.value);
-			}
-		}
+			};
+		};
 
 		const dataJSON = JSON.stringify(formData);
 
 		localStorage.setItem('userData', dataJSON);
 		alert('cadastro feito com sucesso');
-	}
-}
+	};
+};
 
-const formatData = (input) => {
-	input.value = input.value.replace(/\D/g, '');
-
-	if (input.value.length > 2) {
-		input.value = input.value.slice(0, 2) + '/' + input.value.slice(2);
-	}
-	if (input.value.length > 5) {
-		input.value = input.value.slice(0, 5) + '/' + input.value.slice(5);
-	}
-
-	if (input.value.length > 10) {
-		input.value = input.value.slice(0, 10);
-	}
-}
-
-const formatNumber = (input) => {
+const formatNumber = input => {
 	input.value = input.value.replace(/\D/g, '');
 
 	if (input.value.length > 3) {
 		input.value = '(' + input.value.slice(0, 2) + ') ' + input.value.slice(2);
-	}
+	};
 
 	if (input.value.length > 10) {
 		input.value = input.value.slice(0, 10) + '-' + input.value.slice(10);
-	}
+	};
 
 	if (input.value.length > 15) {
 		input.value = input.value.slice(0, 15);
-	}
+	};
 }
 
 const formatCpf = (input) => {
@@ -168,20 +152,20 @@ const formatCpf = (input) => {
 		if (i === 3 || i === 7) {
 
 			input.value = input.value.slice(0, i) + '.' + input.value.slice(i);
-		}
+		};
 		if (i === 11) {
 			input.value = input.value.slice(0, i) + '-' + input.value.slice(i);
 
-		}
+		};
 		i++;
-	}
+	};
 
 	if (input.value.length > 14) {
 		input.value = input.value.slice(0, 14);
 	};
 };
 
-const formatCep = (input) => {
+const formatCep = input => {
 	input.value = input.value.replace(/\D/g, '');
 
 	let i = 0;
@@ -198,27 +182,27 @@ const formatCep = (input) => {
 	};
 };
 
-const onlyLetters = (input) => {
+const onlyLetters = input => {
 	input.value = input.value.replace(/[^a-zA-Z ]/g, '');
 	if (input.value.length > 20) {
 		input.value = input.value.slice(0, 20);
 	};
 };
 
-const onlyNumbers = (input) => {
+const onlyNumbers = input => {
 	input.value = input.value.replace(/\D/g, '');
 	if (input.value.length > 5) {
 		input.value = input.value.slice(0, 5);
 	};
 };
 
-const limiteOfChars = (input) => {
+const limiteOfChars = input => {
 	if (input.value.length > 20) {
 		input.value = input.value.slice(0, 20);
 	};
 };
 
-const limiteOfCharsComplementsBox = (input) => {
+const limiteOfCharsComplementsBox = input => {
 	if (input.value.length > 150) {
 		input.value = input.value.slice(0, 150);
 	};
