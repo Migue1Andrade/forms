@@ -90,13 +90,13 @@ const validateInputs = () => {
 		validForm = false;
 	};
 
-	if(avenue.value.trim() === '' || !regexAvenue.test(avenue.value)) {
+	if (avenue.value.trim() === '' || !regexAvenue.test(avenue.value)) {
 		avenue.value = '';
 		avenue.style.borderColor = 'red';
 		validForm = false;
 	};
 	
-	if(cep.value.trim() === '' || !cepRegex.test(cep.value)) {
+	if (cep.value.trim() === '' || !cepRegex.test(cep.value)) {
 		cep.value = '';
 		cep.style.borderColor = 'red';
 		validForm = false;
