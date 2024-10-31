@@ -25,7 +25,7 @@ const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 const regexAvenue = /^[A-Za-zÀ-ú\s\d\.\-\']+$/;
 const cepRegex = /\d{5}-\d{3}/;
 
-delButton.addEventListener('click', function(event){
+delButton.addEventListener('click', function(event) {
 	cleanInputs(); 
 })
 
@@ -35,14 +35,13 @@ enter.addEventListener('keypress', function(event) {
 		saveButton.click(); 
 	}
 }); 
-
-function cleanInputs() {
+const cleanInputs = () => {
 	const inputs = [fullName, number, email, bornData, cpf, avenue, citty, state, socialName, cep, hood, homeNumber, complementsBox];
 
 	inputs.forEach(input => input.value = '');
 }
 
-function validateInputs() {
+const validateInputs = () => {
 	let validForm = true;
 
 	if (state.value.trim() === '') {
@@ -68,7 +67,7 @@ function validateInputs() {
 		validForm = false;
 	};
 
-	if (bornData.value.trim()=== '' || !regexBornData.test(bornData.value)) {
+	if (bornData.value.trim() === '' || !regexBornData.test(bornData.value)) {
 		bornData.value = '';
 		bornData.style.borderColor = 'red';
 		validForm = false;
@@ -77,47 +76,47 @@ function validateInputs() {
 	if (citty.value.trim() === '') {
 		citty.style.borderColor = 'red';
 		validForm = false;
-	}
+	};
 
 	if (cep.value.trim() === '' || !cepRegex.test(cep.value)) {
 		cep.value = '';
 		cep.style.borderColor = 'red';
 		validForm = false;
-	}
+	};
 
 	if (cpf.value.trim() === '' || !regexCpf.test(cpf.value)) {
 		cpf.value = '';
 		cpf.style.borderColor = 'red';
 		validForm = false;
-	}
+	};
 
 	if(avenue.value.trim() === '' || !regexAvenue.test(avenue.value)) {
 		avenue.value = '';
 		avenue.style.borderColor = 'red';
 		validForm = false;
-	}
+	};
 	
 	if(cep.value.trim() === '' || !cepRegex.test(cep.value)) {
 		cep.value = '';
 		cep.style.borderColor = 'red';
 		validForm = false;
-	}
+	};
 
 	return validForm;
 }
 
-function localSave() {
+const localSave = () => {
 	const validForm = validateInputs();
 
 	if (!validForm) {
-		alert('Preencha os campos obrigatórios!')
+		alert('Preencha os campos obrigatórios!');
 	}
 	else {
 		const inputs = getInputs;
 		const formData = [];
 
 		for (const input of inputs) {
-			console.log(input, 'input')
+
 			if (input.value) {
 				formData.push(input.value);
 			}
@@ -126,10 +125,11 @@ function localSave() {
 		const dataJSON = JSON.stringify(formData);
 
 		localStorage.setItem('userData', dataJSON);
+		alert('cadastro feito com sucesso');
 	}
 }
 
-function formatData(input) {
+const formatData = (input) => {
 	input.value = input.value.replace(/\D/g, '');
 
 	if (input.value.length > 2) {
@@ -144,9 +144,9 @@ function formatData(input) {
 	}
 }
 
-function formatNumber(input) {
+const formatNumber = (input) => {
 	input.value = input.value.replace(/\D/g, '');
-	console.log(input.value.length);
+
 	if (input.value.length > 3) {
 		input.value = '(' + input.value.slice(0, 2) + ') ' + input.value.slice(2);
 	}
@@ -160,13 +160,13 @@ function formatNumber(input) {
 	}
 }
 
-function formatCpf(input) {
+const formatCpf = (input) => {
 	input.value = input.value.replace(/\D/g, '');
 
 	let i = 0;
 	while (i < input.value.length) {
 		if (i === 3 || i === 7) {
-	
+
 			input.value = input.value.slice(0, i) + '.' + input.value.slice(i);
 		}
 		if (i === 11) {
@@ -181,13 +181,13 @@ function formatCpf(input) {
 	};
 };
 
-function formatCep(input) {
+const formatCep = (input) => {
 	input.value = input.value.replace(/\D/g, '');
 
 	let i = 0;
 	while (i < input.value.length) {
 		if (i === 5) {
-	
+
 			input.value = input.value.slice(0, i) + '-' + input.value.slice(i);
 		};
 		i++;
@@ -198,29 +198,28 @@ function formatCep(input) {
 	};
 };
 
-function onlyLetters(input) {
+const onlyLetters = (input) => {
 	input.value = input.value.replace(/[^a-zA-Z ]/g, '');
 	if (input.value.length > 20) {
 		input.value = input.value.slice(0, 20);
 	};
 };
 
-function onlyNumbers(input) {
+const onlyNumbers = (input) => {
 	input.value = input.value.replace(/\D/g, '');
 	if (input.value.length > 5) {
 		input.value = input.value.slice(0, 5);
 	};
 };
 
-function limiteOfChars(input) {
+const limiteOfChars = (input) => {
 	if (input.value.length > 20) {
 		input.value = input.value.slice(0, 20);
 	};
 };
 
-function limiteOfCharsComplementsBox(input) {
+const limiteOfCharsComplementsBox = (input) => {
 	if (input.value.length > 150) {
 		input.value = input.value.slice(0, 150);
 	};
 };
-
