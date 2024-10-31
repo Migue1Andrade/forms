@@ -15,6 +15,14 @@ input {
 	height: 15px;
 }
 
+span {
+	color: red;
+}
+
+p {
+	display: flex;
+}
+
 .names {
 	display: flex;
 	align-items: center;
