@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/style.css">
+	<title>Document</title>
+</head>
+<body>
+		<div class="enter">
+			<div>
+				<p class="title">Novo Cadastro</p>
+			</div>
+			<div class="data-section">
+				<p>Dados Pessoais</p>
+			</div>
+			<div>
+				<div class="names">
+					<p>Nome completo</p>
+					<input placeholder="digite seu nome" type="text" class="input-name" oninput="limiteOfChars(this)">
+					<p>Nome social</p>
+					<input placeholder="digite seu nome social" type="text" class="social-name" oninput="limiteOfChars(this)">
+				</div>
+			</div>
+			<div>
+				<div class="names">
+					<p>Telefone</p>
+					<input placeholder="(00) 00000-0000" type="text" class="number" oninput="formatNumber(this)">
+					<p>Nascimento</p>
+					<input placeholder="dd/mm/aaaa" type="text" class="data" oninput="formatData(this)" pattern="\d{2}/\d{2}/\d{4}" maxlength="10">
+					<p>CPF</p>
+					<input placeholder="000.000.000-00" type="text" class='cpf' oninput="formatCpf(this)">
+				</div>
+			</div>
+			<div class="names">
+				<p>Email</p>
+				<input placeholder="xxxxx@gmail.com" type="text" class="email" oninput="limiteOfChars(this)">
+			</div>
+			<div class="data-section">
+				<p>Endereco</p>
+			</div>
+			<div class="names">
+				<p>Endereco</p>
+				<input placeholder="digite sua rua" type="text" class="street" oninput="onlyLetters(this)">
+			</div>
+			<div class="names">
+				<p>CEP</p>
+				<input placeholder="00000-000" type="text" class="cep" oninput="formatCep(this)">
+				<p>Numero</p>
+				<input placeholder="digite o numero" type="text" class="homeNumber" oninput="onlyNumbers(this)">
+			</div>
+			<div class="names">
+				<p>Bairro</p>
+				<input placeholder="digite o bairro" pattern="[a-zA-Z\s]+" type="text" class="hood" oninput="onlyLetters(this)">
+				<p>Cidade</p>
+				<input placeholder="digite a cidade" pattern="[a-zA-Z\s]+" type="text" class="citty" oninput="onlyLetters(this)">
+				<p>Estado</p>
+				<input placeholder="digite o Estado" pattern="[a-zA-Z\s]+" type="text" class="state" oninput="onlyLetters(this)">
+			</div>
+			
+			<div class="names">
+				<p>Observacoes</p>
+				<textarea type="text" class="complements-box" oninput="limiteOfCharsComplementsBox(this)"></textarea>
+			</div>
+			<div class="buttons">
+			<button class="buttons-style" id="delButton">cancelar</button>
+			<button class="buttons-style" id="savedButton" onclick="localSave()">salvar</button>
+			</div>
+		</div>
+		<script src="../js/index.js"></script>
+</body>
+</html>
